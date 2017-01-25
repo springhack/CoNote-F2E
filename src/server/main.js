@@ -1,6 +1,6 @@
 /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2017-01-25 11:48:29
+        Last modified: 2017-01-25 12:16:39
         Filename: src/server/main.js
         Description: Created by SpringHack using vim automatically.
 **/
@@ -34,7 +34,7 @@ app.use(session({
         secure: true
     }
 }));
-app.use((req, res) => {
+app.use((req, res, next) => {
     match({routes, location : req.url}, (err, redirectLocation, renderProps) => {
         if (err)
             res.status(500).end(`Internal Server Error ${err}`);
@@ -44,11 +44,9 @@ app.use((req, res) => {
             let html = renderToString(<RouterContext {...renderProps} />);
             res.status(200).end(Template.replace('Loading...', html));
         } else
-            res.status(404).end('Not found');
-        
+            next();
     });
 });
-
 app.use(express.static(path.resolve(__dirname, '../dist')));
 
 app.listen(3000);

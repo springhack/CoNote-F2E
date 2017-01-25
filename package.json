@@ -9,9 +9,12 @@
     "bs": "mkdir -p lib && babel src/common -d lib && babel src/server -d lib",
     "bc": "NODE_ENV=production webpack --progress --config webpack.production.config.js",
     "build": "npm run bc && npm run bs",
-    "start": "node lib/main.js"
+    "start": "NODE_SSR=true node lib/main.js"
   },
-  "keywords": ["SpringHack", "CoNote"],
+  "keywords": [
+    "SpringHack",
+    "CoNote"
+  ],
   "author": "SpringHack",
   "license": "GPL-3.0",
   "babel": {
@@ -49,6 +52,7 @@
     "muicss": "latest",
     "multer": "^1.2.0",
     "open-browser-webpack-plugin": "^0.0.3",
+    "postcss-loader": "^1.2.2",
     "react": "latest",
     "react-dom": "latest",
     "react-hot-loader": "^3.0.0-beta.6",
