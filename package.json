@@ -25,13 +25,22 @@
     ],
     "plugins": [
       "babel-plugin-transform-decorators-legacy",
-      "react-hot-loader/babel"
+      "react-hot-loader/babel",
+      [
+        "import",
+        {
+          "libraryName": "antd",
+          "style": true
+        }
+      ]
     ]
   },
   "dependencies": {
+    "antd": "^2.6.4",
     "babel-cli": "latest",
     "babel-core": "latest",
     "babel-loader": "latest",
+    "babel-plugin-import": "^1.1.0",
     "babel-plugin-transform-decorators-legacy": "latest",
     "babel-plugin-transform-react-jsx": "latest",
     "babel-polyfill": "latest",
@@ -51,6 +60,7 @@
     "mobx-react": "latest",
     "muicss": "latest",
     "multer": "^1.2.0",
+    "node-hook": "^0.4.0",
     "open-browser-webpack-plugin": "^0.0.3",
     "postcss-loader": "^1.2.2",
     "react": "latest",
@@ -59,6 +69,7 @@
     "react-router": "^3.0.2",
     "style-loader": "latest",
     "webpack": "latest",
-    "webpack-dev-server": "^1.16.2"
+    "webpack-dev-server": "^1.16.2",
+    "whatwg-fetch": "^2.0.2"
   }
 }

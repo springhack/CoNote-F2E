@@ -1,6 +1,6 @@
 /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2017-01-25 12:28:42
+        Last modified: 2017-01-27 00:36:06
         Filename: webpack.production.config.js
         Description: Created by SpringHack using vim automatically.
 **/
@@ -10,6 +10,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
+    fetch : 'whatwg-fetch',
     main: './src/client/main.js'
   },
   output: {
@@ -48,6 +49,9 @@ module.exports = {
       minify: {
         removeComments: true,
 	    collapseWhitespace: false
+      },
+      chunksSortMode: function (a, b) {
+        return (a.names[0] > b.names[0]);
       }
     }),
     new webpack.optimize.UglifyJsPlugin({

@@ -1,6 +1,6 @@
 /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2017-01-25 12:28:47
+        Last modified: 2017-01-27 00:35:58
         Filename: webpack.config.js
         Description: Created by SpringHack using vim automatically.
 **/
@@ -20,6 +20,7 @@ module.exports = {
     port: 9090
   },
   entry: {
+    fetch : 'whatwg-fetch',
     main: ['webpack/hot/dev-server', 'webpack-dev-server/client?http://localhost:9090', path.resolve(__dirname, 'src/client/main.js')]
   },
   output: {
@@ -59,6 +60,9 @@ module.exports = {
       minify: {
         removeComments: true,
 	    collapseWhitespace: false
+      },
+      chunksSortMode: function (a, b) {
+        return (a.names[0] > b.names[0]);
       }
     }),
     new webpack.DefinePlugin({

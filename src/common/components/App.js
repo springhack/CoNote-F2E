@@ -1,6 +1,6 @@
 /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2017-01-25 12:12:25
+        Last modified: 2017-01-26 13:18:01
         Filename: src/common/components/App.js
         Description: Created by SpringHack using vim automatically.
 **/
@@ -15,7 +15,13 @@ export default @observer class extends React.Component {
     render() 
     {
         return (
-            <div>Dosk</div>
+            <div>
+                <header>
+                    <h1>CoNote</h1>
+                </header>
+                <article></article>
+                <footer></footer>
+            </div>
         );
     }
     componentDidMount() {
