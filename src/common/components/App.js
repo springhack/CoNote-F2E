@@ -1,6 +1,6 @@
 /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2017-01-26 13:18:01
+        Last modified: 2017-01-27 19:08:26
         Filename: src/common/components/App.js
         Description: Created by SpringHack using vim automatically.
 **/
@@ -17,7 +17,11 @@ export default @observer class extends React.Component {
         return (
             <div>
                 <header>
-                    <h1>CoNote</h1>
+                    <h1>CoNote - Free note 4 U :)</h1>
+                    <section>
+                        <a to='/login'>登录</a>
+                        <a to='/register'>注册</a>
+                    </section>
                 </header>
                 <article></article>
                 <footer></footer>
