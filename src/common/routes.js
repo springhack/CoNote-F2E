@@ -1,7 +1,7 @@
 /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2017-01-27 14:21:37
-        Filename: routes.js
+        Last modified: 2017-01-28 01:45:52
+        Filename: ../routes.js
         Description: Created by SpringHack using vim automatically.
 **/
 import React from 'react';
@@ -13,7 +13,5 @@ import {
 export default (
     <Route path='/'>
         <IndexRoute component={App} />
-        <Route path='login' component={Login} />
-        <Route path='register' component={Register} />
     </Route>
 );

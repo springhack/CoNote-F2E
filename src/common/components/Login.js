@@ -1,51 +1,60 @@
 /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2017-01-27 14:18:52
+        Last modified: 2017-01-28 02:14:30
         Filename: Login.js
         Description: Created by SpringHack using vim automatically.
 **/
 import React from 'react';
 import {observer} from 'mobx-react';
-import Config from '../config/Config.js';
-
 import {
-    Input, Button
+    Input, Button, Card
 } from 'antd';
+
+import Config from '../config/Config.js';
 
 export default @observer class extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             user : '',
-            pass : ''
+            pass : '',
+            loading : false
         };
     }
     render() 
     {
         return (
-            <div>
+            <Card className='Login' title={<h3>登录账户</h3>}>
                 <Input type='text' value={this.state.user} onChange={e => this.setState({user : e.target.value})} placeholder='username' addonBefore='账号' />
                 <Input type='password' value={this.state.pass} onChange={e => this.setState({pass : e.target.value})} placeholder='password' addonBefore='密码' />
-                <Button onClick={e => this.doLogin(e)}>登录</Button>
+                <Button loading={this.state.loading} onClick={e => this.doLogin(e)}>登录</Button>
                 <Button onClick={e => this.doReset(e)}>重置</Button>
-            </div>
+            </Card>
         );
     }
     doLogin(e) {
-        fetch(Config.getServer('/user'), {
+        this.setState({loading: true});
+        fetch(Config.getServer('/login'), {
             method : 'POST',
             mode : 'cors',
+            credentials : 'include',
             headers : {
                 'Content-Type' : 'application/json'
             },
             body : JSON.stringify({
-                user : this.state.user,
-                pass : this.state.pass
+                username : this.state.user,
+                password : this.state.pass
             })
         })
         .then(res => res.json())
-        .then(json => console.log(json))
-        .catch(err => console.log(err));
+        .then(json => {
+            json.error?message.error(json.error):message.success('登录成功!');
+            this.setState({loading : false});
+        })
+        .catch(err => {
+            message.error(err);
+            this.setState({loading : false});
+        });
     }
     doReset(e) {
         this.setState({
