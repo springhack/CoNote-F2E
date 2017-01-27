@@ -1,11 +1,12 @@
 /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2017-01-27 00:37:39
-        Filename: src/common/components/Login.js
+        Last modified: 2017-01-27 14:18:52
+        Filename: Login.js
         Description: Created by SpringHack using vim automatically.
 **/
 import React from 'react';
 import {observer} from 'mobx-react';
+import Config from '../config/Config.js';
 
 import {
     Input, Button
@@ -30,13 +31,21 @@ export default @observer class extends React.Component {
             </div>
         );
     }
-    componentDidMount() {
-        if (process.env.NODE_SSR)
-            console.log('Server'); //Won't happend
-        else
-            console.log('Client');
-    }
     doLogin(e) {
+        fetch(Config.getServer('/user'), {
+            method : 'POST',
+            mode : 'cors',
+            headers : {
+                'Content-Type' : 'application/json'
+            },
+            body : JSON.stringify({
+                user : this.state.user,
+                pass : this.state.pass
+            })
+        })
+        .then(res => res.json())
+        .then(json => console.log(json))
+        .catch(err => console.log(err));
     }
     doReset(e) {
         this.setState({

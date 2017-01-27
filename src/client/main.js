@@ -1,6 +1,6 @@
 /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2017-01-25 11:06:48
+        Last modified: 2017-01-27 14:27:52
         Filename: src/client/main.js
         Description: Created by SpringHack using vim automatically.
 **/
@@ -10,7 +10,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Router, browserHistory} from 'react-router';
 
-import Config from './config/Config.js';
+import Config from '../common/config/Config.js';
 import Model from './model/Model.js';
 import routes from '../common/routes.js';
 
