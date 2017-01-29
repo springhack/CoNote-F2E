@@ -1,13 +1,13 @@
 /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2017-01-28 02:14:30
-        Filename: Login.js
+        Last modified: 2017-01-30 00:10:42
+        Filename: src/common/components/Login.js
         Description: Created by SpringHack using vim automatically.
 **/
 import React from 'react';
 import {observer} from 'mobx-react';
 import {
-    Input, Button, Card
+    message, Input, Button, Card
 } from 'antd';
 
 import Config from '../config/Config.js';
@@ -26,13 +26,17 @@ export default @observer class extends React.Component {
         return (
             <Card className='Login' title={<h3>登录账户</h3>}>
                 <Input type='text' value={this.state.user} onChange={e => this.setState({user : e.target.value})} placeholder='username' addonBefore='账号' />
+                <br />
                 <Input type='password' value={this.state.pass} onChange={e => this.setState({pass : e.target.value})} placeholder='password' addonBefore='密码' />
-                <Button loading={this.state.loading} onClick={e => this.doLogin(e)}>登录</Button>
+                <br />
+                <Button loading={this.state.loading} onClick={e => this.doLogin(e)} style={{marginRight : '20px'}}>登录</Button>
                 <Button onClick={e => this.doReset(e)}>重置</Button>
             </Card>
         );
     }
     doLogin(e) {
+        if (['user', 'pass'].filter(key => this.state[key] != '').length != 2)
+            return message.error('不能留空!');
         this.setState({loading: true});
         fetch(Config.getServer('/login'), {
             method : 'POST',
@@ -50,6 +54,7 @@ export default @observer class extends React.Component {
         .then(json => {
             json.error?message.error(json.error):message.success('登录成功!');
             this.setState({loading : false});
+            setTimeout(() => document.location.href = '/notes');
         })
         .catch(err => {
             message.error(err);

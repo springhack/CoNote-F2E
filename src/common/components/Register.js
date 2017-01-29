@@ -1,6 +1,6 @@
 /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2017-01-28 02:14:32
+        Last modified: 2017-01-30 00:11:19
         Filename: Register.js
         Description: Created by SpringHack using vim automatically.
 **/
@@ -30,25 +30,24 @@ export default @observer class extends React.Component {
         return (
             <Card className='Register' title={<h3>注册账户</h3>}>
                 <Input type='text' onChange={e => this.setState({user : e.target.value})} addonBefore='账号' placeholder='username' />
+                <br />
                 <Input type='password' onChange={e => this.setState({pass : e.target.value})} addonBefore='密码' placeholder='password' />
+                <br />
                 <Input type='password' onChange={e => this.setState({paxx : e.target.value})} addonBefore='密码' placeholder='verify password' />
+                <br />
                 <Input type='email' onChange={e => this.setState({email : e.target.value})} addonBefore='邮箱' placeholder='e-mail address' />
+                <br />
                 <Input type='text' onChange={e => this.setState({verify : e.target.value})} addonBefore='验证' placeholder='verify code' />
+                <br />
                 <Button loading={this.state.loading} onClick={e => this.doReg(e)}>注册</Button>
             </Card>
         );
     }
     doReg(e) {
         if (['user', 'pass', 'paxx', 'email', 'verify'].filter(key => this.state[key] != '').length != 5)
-        {
-            message.error('不能留空!');
-            return;
-        }
+            return message.error('不能留空!');
         if (this.state.pass != this.state.paxx)
-        {
-            message.error('两次输入密码不同!');
-            return;
-        }
+            return message.error('两次输入密码不同!');
         this.setState({loading: true});
         fetch(Config.getServer('/user'), {
             method : 'POST',
