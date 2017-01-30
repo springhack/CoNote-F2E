@@ -1,7 +1,7 @@
 /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2017-01-30 00:10:42
-        Filename: src/common/components/Login.js
+        Last modified: 2017-01-30 22:30:42
+        Filename: Login.js
         Description: Created by SpringHack using vim automatically.
 **/
 import React from 'react';
@@ -54,7 +54,7 @@ export default @observer class extends React.Component {
         .then(json => {
             json.error?message.error(json.error):message.success('登录成功!');
             this.setState({loading : false});
-            setTimeout(() => document.location.href = '/notes');
+            json.error || setTimeout(() => document.location.href = '/notes', 2000);
         })
         .catch(err => {
             message.error(err);
