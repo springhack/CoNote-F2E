@@ -1,6 +1,6 @@
 /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2017-01-30 00:11:19
+        Last modified: 2017-01-31 13:22:40
         Filename: Register.js
         Description: Created by SpringHack using vim automatically.
 **/
@@ -49,18 +49,12 @@ export default @observer class extends React.Component {
         if (this.state.pass != this.state.paxx)
             return message.error('两次输入密码不同!');
         this.setState({loading: true});
-        fetch(Config.getServer('/user'), {
-            method : 'POST',
-            mode : 'cors',
-            credentials : 'include',
-            headers : {
-                'Content-Type' : 'application/json'
-            },
-            body : JSON.stringify({
-                username : this.state.user,
-                password : this.state.pass
-            })
-        })
+        fetch(Config.getServer('/user'), Config.getFetch('POST', {
+            username : this.state.user,
+            password : this.state.pass,
+            email : this.state.email,
+            verify_code : this.state.verify
+        }))
         .then(res => res.json())
         .then(json => {
             json.error?message.error(json.error):message.success('注册成功!');

@@ -1,6 +1,6 @@
 /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2017-01-30 22:30:42
+        Last modified: 2017-01-31 13:23:28
         Filename: Login.js
         Description: Created by SpringHack using vim automatically.
 **/
@@ -38,23 +38,15 @@ export default @observer class extends React.Component {
         if (['user', 'pass'].filter(key => this.state[key] != '').length != 2)
             return message.error('不能留空!');
         this.setState({loading: true});
-        fetch(Config.getServer('/login'), {
-            method : 'POST',
-            mode : 'cors',
-            credentials : 'include',
-            headers : {
-                'Content-Type' : 'application/json'
-            },
-            body : JSON.stringify({
-                username : this.state.user,
-                password : this.state.pass
-            })
-        })
+        fetch(Config.getServer('/login'), Config.getFetch('POST', {
+            username : this.state.user,
+            password : this.state.pass
+        }))
         .then(res => res.json())
         .then(json => {
             json.error?message.error(json.error):message.success('登录成功!');
             this.setState({loading : false});
-            json.error || setTimeout(() => document.location.href = '/notes', 2000);
+            json.error || setTimeout(() => document.location.href = '/note', 2000);
         })
         .catch(err => {
             message.error(err);
