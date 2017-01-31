@@ -1,7 +1,7 @@
 {
-  "name": "react-ssr-f2e",
+  "name": "conote-ssr-f2e",
   "version": "1.0.0",
-  "description": "React SSR F2E Project",
+  "description": "CoNote SSR F2E Project",
   "main": "./lib/main.js",
   "scripts": {
     "test": "npm run build",
