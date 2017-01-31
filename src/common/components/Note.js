@@ -1,6 +1,6 @@
 /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2017-01-31 15:50:31
+        Last modified: 2017-02-01 02:52:06
         Filename: src/common/components/Note.js
         Description: Created by SpringHack using vim automatically.
 **/
