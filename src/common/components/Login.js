@@ -1,6 +1,6 @@
 /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2017-01-31 13:23:28
+        Last modified: 2017-02-05 15:09:42
         Filename: Login.js
         Description: Created by SpringHack using vim automatically.
 **/
@@ -24,7 +24,7 @@ export default @observer class extends React.Component {
     render() 
     {
         return (
-            <Card className='Login' title={<h3>登录账户</h3>}>
+            <Card className='Login' title='登录账户'>
                 <Input type='text' value={this.state.user} onChange={e => this.setState({user : e.target.value})} placeholder='username' addonBefore='账号' />
                 <br />
                 <Input type='password' value={this.state.pass} onChange={e => this.setState({pass : e.target.value})} placeholder='password' addonBefore='密码' />

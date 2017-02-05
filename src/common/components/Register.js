@@ -1,14 +1,13 @@
 /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2017-01-31 13:22:40
+        Last modified: 2017-02-05 15:09:44
         Filename: Register.js
         Description: Created by SpringHack using vim automatically.
 **/
 import React from 'react';
 import {observer} from 'mobx-react';
 import {
-    message,
-    Input, Button, Card
+    message, Input, Button, Card
 } from 'antd';
 
 import Config from '../config/Config.js';
@@ -28,7 +27,7 @@ export default @observer class extends React.Component {
     render() 
     {
         return (
-            <Card className='Register' title={<h3>注册账户</h3>}>
+            <Card className='Register' title='注册账户'>
                 <Input type='text' onChange={e => this.setState({user : e.target.value})} addonBefore='账号' placeholder='username' />
                 <br />
                 <Input type='password' onChange={e => this.setState({pass : e.target.value})} addonBefore='密码' placeholder='password' />

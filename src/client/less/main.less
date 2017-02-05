@@ -1,7 +1,22 @@
+@AppColor:      #FFF8D2;
+@TitleColor:    #FFD7E9;
+@BgColor:       #FFFBF3;
+
 body, img, div, section {
     border: 0px;
     padding: 0px;
     margin: 0px;
+}
+
+#app {
+    background: @AppColor;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 @import './App.less';
