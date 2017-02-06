@@ -25,9 +25,19 @@
         .Edit {
             height: 100%;
             width: 80%;
-            .View {
+            .Tool {
+                display: inline-block;
                 position: absolute;
                 top: 0px;
+                height: 29px;
+                bottom: 0px;
+                width: 80%;
+                background: @BgColor;
+                margin-left: 20%;
+            }
+            .View {
+                position: absolute;
+                top: 30px;
                 bottom: 0px;
                 width: 40%;
                 overflow-y: scroll;
@@ -37,18 +47,21 @@
             }
             .Editor {
                 position: absolute;
-                top: 0px;
+                top: 30px;
                 bottom: 0px;
                 width: 40%;
                 margin-left: 60%;
                 overflow-y: scroll;
-                .Tool {
-                    display: flex;
-                }
                 .CodeMirror {
                     height: 100%;
                 }
             }
         }
+    }
+}
+
+.Modal {
+    .S {
+        text-align: center;
     }
 }

@@ -1,32 +1,29 @@
 /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2017-02-01 02:49:54
+        Last modified: 2017-02-07 01:20:59
         Filename: webpack.production.config.js
         Description: Created by SpringHack using vim automatically.
 **/
 let webpack = require('webpack');
 let ExtractTextPlugin = require("extract-text-webpack-plugin")
-let ExtractCSS = new ExtractTextPlugin('res/css/[name].css');
 let ExtractLESS = new ExtractTextPlugin('res/css/[name].css');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var path = require('path');
 
 module.exports = {
   entry: {
-    fetch : 'whatwg-fetch',
+    vendor: ['react', 'react-dom', 'react-router'],
     main: path.resolve(__dirname, 'src/client/main.js')
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
-    filename: './res/js/[name].js'
+    filename: 'res/js/[name].js'
   },
   module: {
     rules: [
       {
         test: /\.js(x)?$/,
         use: [
-          'react-hot-loader',
           'babel-loader'
         ],
         exclude: [
@@ -34,31 +31,32 @@ module.exports = {
         ]
       },
       {
-        test: /\.css$/,
-        use: ExtractCSS.extract(['css-loader', 'postcss-loader'])
-      },
-      {
-        test: /\.less$/,
-        use: ExtractLESS.extract(['css-loader', 'postcss-loader', {
-          loader: 'less-loader',
-          options: {
-            sourceMap: true,
-            relativeUrls: false
+        test: /\.(css|less)$/,
+        use: ExtractLESS.extract([
+          {
+            loader: 'css-loader',
+            options: {
+              minimize: true
+            }
+          },
+          'postcss-loader',
+          {
+            loader: 'less-loader',
+            options: {
+              relativeUrls: false
+            }
           }
-        }])
+        ])
       }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/client/index.html',
+      template: path.resolve(__dirname, 'src/client/index.html'),
       inject: true,
       minify: {
         removeComments: true,
-	    collapseWhitespace: false
-      },
-      chunksSortMode: function (a, b) {
-        return (a.names[0] > b.names[0]);
+	    collapseWhitespace: true
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
@@ -75,7 +73,10 @@ module.exports = {
         NODE_SSR: false
       }
     }),
-    ExtractLESS,
-    ExtractCSS
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      filename: 'res/js/vendor.js'
+    }),
+    ExtractLESS
   ]
 };
