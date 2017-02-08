@@ -1,7 +1,7 @@
 /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2017-02-07 00:21:49
-        Filename: src/common/components/Note.js
+        Last modified: 2017-02-08 16:13:23
+        Filename: Note.js
         Description: Created by SpringHack using vim automatically.
 **/
 import React from 'react';
@@ -38,8 +38,7 @@ export default @observer class extends React.Component {
             currentID : ''
         };
     }
-    render() 
-    {
+    render() {
         let tree = this.convertNode(this.state.notes);
         return (
             <section className='Note'>

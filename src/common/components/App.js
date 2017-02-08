@@ -1,7 +1,7 @@
 /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2017-02-06 00:20:22
-        Filename: src/common/components/App.js
+        Last modified: 2017-02-08 16:12:39
+        Filename: App.js
         Description: Created by SpringHack using vim automatically.
 **/
 import React from 'react';
@@ -18,8 +18,7 @@ export default @observer class extends React.Component {
         super(props);
         this.state = {};
     }
-    render() 
-    {
+    render() {
         return (
             <Container className='App'>
                 <Panel className='Title'>

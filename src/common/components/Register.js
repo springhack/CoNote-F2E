@@ -1,6 +1,6 @@
 /**
         Author: SpringHack - springhack@live.cn
-        Last modified: 2017-02-05 15:09:44
+        Last modified: 2017-02-08 16:13:04
         Filename: Register.js
         Description: Created by SpringHack using vim automatically.
 **/
@@ -24,8 +24,7 @@ export default @observer class extends React.Component {
             loading : false
         };
     }
-    render() 
-    {
+    render() {
         return (
             <Card className='Register' title='注册账户'>
                 <Input type='text' onChange={e => this.setState({user : e.target.value})} addonBefore='账号' placeholder='username' />
